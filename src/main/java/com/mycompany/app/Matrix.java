@@ -31,8 +31,24 @@ public class Matrix {
 	public int getHeight() {
 		return height;
 	}
+
+	public Float[] getRow(int r) {
+		Float[] row = new Float[width];
+		for (int i = 0; i < width; i++) {
+			row[i] = matrix[r][i];
+		}
+		return row;
+	}
+
+	public Float[] getCol(int c) {
+		Float[] col = new Float[height];
+		for (int i = 0; i < width; i++) {
+			col[i] = matrix[i][c];
+		}
+		return col;
+	}
 	
-	public double getElement(int x, int y) {
+	public Float getElement(int x, int y) {
 		return matrix[y][x];
 	}
 	
