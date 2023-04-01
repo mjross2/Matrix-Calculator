@@ -8,6 +8,30 @@ public class Operations {
 	}
 	
 	/**
+	 * 
+	 * @param matrix
+	 * @return
+	 */
+	public static Matrix matrixTranspose(Matrix matrix) {
+
+	    // Get the number of rows and columns in the original matrix
+	    int rows = matrix.getHeight();
+	    int cols = matrix.getWidth();
+
+	    // Create a new matrix to store the transpose
+	    Matrix transpose = new Matrix(cols, rows);
+
+	    // Transpose the original matrix by swapping rows and columns
+	    for (int i = 0; i < rows; i++) {
+	        for (int j = 0; j < cols; j++) {
+	            transpose.setElement(j, i, matrix.getElement(i, j));
+	        }
+	    }
+
+	    return transpose;
+	}
+	
+	/**
 	 * Inverts a matrix
 	 * @param matrix
 	 * @return
