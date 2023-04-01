@@ -7,7 +7,7 @@ public class Operations {
 	 * @param matrix
 	 * @return
 	 */
-	public Matrix matrixGaussJordanElimination(Matrix matrix) {
+	public static Matrix gaussJordanElimination(Matrix matrix) {
 		int height = matrix.getHeight();
 	    int width = matrix.getWidth();
 	    float[][] augmented = new float[height][width*2];
@@ -65,7 +65,7 @@ public class Operations {
 	 * @param matrix2
 	 * @return
 	 */
-	public static Matrix matrixSubtraction(Matrix matrix1, Matrix matrix2) {
+	public static Matrix subtract(Matrix matrix1, Matrix matrix2) {
 
 	    // Check that the matrices have the same dimensions
 	    int rows = matrix1.getHeight();
@@ -93,7 +93,7 @@ public class Operations {
 	 * @param matrix
 	 * @return
 	 */
-	public static Matrix matrixTranspose(Matrix matrix) {
+	public static Matrix transpose(Matrix matrix) {
 
 	    // Get the number of rows and columns in the original matrix
 	    int rows = matrix.getHeight();
@@ -118,7 +118,7 @@ public class Operations {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static Matrix matrixInverse(Matrix matrix) throws Exception {
+	public static Matrix invert(Matrix matrix) throws Exception {
 	    int n = matrix.getWidth();
 	    if (n != matrix.getHeight()) {
 	        throw new Exception("Matrix must be square");
@@ -174,12 +174,12 @@ public class Operations {
 	 * @return
 	 * @throws Exception
 	 */
-    Matrix matrixMultiply(Matrix a, Matrix b) throws Exception {
+    public static Matrix multiply(Matrix a, Matrix b) throws Exception {
         Float element;
         Matrix result = new Matrix(a.getHeight(), b.getWidth());
         for (int i = 0; i < b.getWidth(); i++) {
             for (int j = 0; j < b.getHeight(); j++) {
-                element = matrixDotProduct(a.getRow(i), b.getCol(j));
+                element = dotProduct(a.getRow(i), b.getCol(j));
                 result.setElement(i, j, element); 
             }
         }
@@ -194,7 +194,7 @@ public class Operations {
      * @return
      * @throws Exception
      */
-    public Float matrixDotProduct(Float[] row, Float[] col) throws Exception {
+    public static Float dotProduct(Float[] row, Float[] col) throws Exception {
         if (row.length != col.length) {
             throw new Exception("Size must match");
         }
@@ -212,7 +212,7 @@ public class Operations {
      * @param b
      * @return
      */
-    public Matrix matrixAdd(Matrix a, Matrix b) {
+    public static Matrix add(Matrix a, Matrix b) {
         Float aVal;
         Float bVal;
         Float sum;
