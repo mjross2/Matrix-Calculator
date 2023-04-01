@@ -228,4 +228,33 @@ public class Operations {
         
         return result;
     }	
+    
+    public static float determinant(Matrix matrix) {
+    	int width = matrix.getWidth();
+    	int height = matrix.getHeight();
+    	if (width != height) {
+    		System.err.println("Only square matricies have determinants.");
+    		return 0;
+    	} else if (width == 1) {
+    		return matrix.getElement(0, 0);
+    	} else if (width == 2) {
+    		float a = matrix.getElement(0, 0);
+    		float b = matrix.getElement(1, 0);
+    		float c = matrix.getElement(0, 1);
+    		float d = matrix.getElement(1, 1);
+    		return (a*d)-(b*c);
+    	}
+    	float result = 0;
+    	// for each element (e) in the first row
+    	for (int col = 0; col < width; col++) {
+    		// result += e * Cofactor expansion of e's location
+    		result += cofactor(matrix, col, 0);
+    	}
+    	return result;
+    }
+
+	public static float cofactor(Matrix matrix, int x, int y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
