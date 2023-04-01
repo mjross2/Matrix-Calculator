@@ -1,17 +1,7 @@
 package com.mycompany.app;
 
 public class Operations {
-	
-	// TODO
-	/**
-	 * 
-	 * @param matrix
-	 * @return
-	 */
-	public static Matrix transpose(Matrix matrix) {
-		return matrix;
-	}
-	
+		
 	/**
 	 * 
 	 * @param matrix1
@@ -37,7 +27,7 @@ public class Operations {
 	            result.setElement(j, i, diff);
 	        }
 	    }
-	    
+	   
 	    return result;
 	}
 	
@@ -72,7 +62,7 @@ public class Operations {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static Matrix inverse(Matrix matrix) throws Exception {
+	public static Matrix matrixInverse(Matrix matrix) throws Exception {
 	    int n = matrix.getWidth();
 	    if (n != matrix.getHeight()) {
 	        throw new Exception("Matrix must be square");
@@ -128,15 +118,16 @@ public class Operations {
 	 * @return
 	 * @throws Exception
 	 */
-    Matrix multiply(Matrix a, Matrix b) throws Exception {
+    Matrix matrixMultiply(Matrix a, Matrix b) throws Exception {
         Float element;
         Matrix result = new Matrix(a.getHeight(), b.getWidth());
         for (int i = 0; i < b.getWidth(); i++) {
             for (int j = 0; j < b.getHeight(); j++) {
-                element = dotProduct(a.getRow(i), b.getCol(j));
+                element = matrixDotProduct(a.getRow(i), b.getCol(j));
                 result.setElement(i, j, element); 
             }
         }
+        
         return result;
     }
 
@@ -147,7 +138,7 @@ public class Operations {
      * @return
      * @throws Exception
      */
-    public Float dotProduct(Float[] row, Float[] col) throws Exception {
+    public Float matrixDotProduct(Float[] row, Float[] col) throws Exception {
         if (row.length != col.length) {
             throw new Exception("Size must match");
         }
@@ -155,6 +146,7 @@ public class Operations {
         for (int i = 0; i < row.length; i++) {
             sum += row[i] * col[i];
         }
+        
         return sum;
     }
 
@@ -164,7 +156,7 @@ public class Operations {
      * @param b
      * @return
      */
-    public Matrix add(Matrix a, Matrix b) {
+    public Matrix matrixAdd(Matrix a, Matrix b) {
         Float aVal;
         Float bVal;
         Float sum;
@@ -177,7 +169,7 @@ public class Operations {
                 result.setElement(i, j, sum);
             }
         }
+        
         return result;
-    }
-	
+    }	
 }
