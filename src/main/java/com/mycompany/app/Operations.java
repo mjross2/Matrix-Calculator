@@ -37,7 +37,7 @@ public class Operations {
 	            result.setElement(j, i, diff);
 	        }
 	    }
-
+	    
 	    return result;
 	}
 	
