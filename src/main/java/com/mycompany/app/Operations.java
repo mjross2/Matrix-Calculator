@@ -9,6 +9,36 @@ public class Operations {
 	
 	/**
 	 * 
+	 * @param matrix1
+	 * @param matrix2
+	 * @return
+	 */
+	public static Matrix matrixSubtraction(Matrix matrix1, Matrix matrix2) {
+
+	    // Check that the matrices have the same dimensions
+	    int rows = matrix1.getHeight();
+	    int cols = matrix1.getWidth();
+	    if (rows != matrix2.getHeight() || cols != matrix2.getWidth()) {
+	        throw new IllegalArgumentException("Matrices must have the same dimensions");
+	    }
+
+	    // Create a new matrix to store the result
+	    Matrix result = new Matrix(cols, rows);
+
+	    // Subtract the corresponding elements of the input matrices
+	    for (int i = 0; i < rows; i++) {
+	        for (int j = 0; j < cols; j++) {
+	            float diff = matrix1.getElement(j, i) - matrix2.getElement(j, i);
+	            result.setElement(j, i, diff);
+	        }
+	    }
+
+	    return result;
+	}
+	
+	
+	/**
+	 * 
 	 * @param matrix
 	 * @return
 	 */
