@@ -2,6 +2,11 @@ package com.mycompany.app;
 
 public class Operations {
 	
+	// TODO
+	public static Matrix transpose(Matrix matrix) {
+		return matrix;
+	}
+	
 	/**
 	 * Inverts a matrix
 	 * @param matrix
