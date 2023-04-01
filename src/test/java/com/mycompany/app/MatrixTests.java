@@ -6,7 +6,7 @@ public class MatrixTests {
 
 	public static void main(String[] args) {
 		
-		Matrix m = new Matrix(3, 4);
+		Matrix m = new Matrix(3, 3);
 		m.print();
 		
 		try (Scanner scan = new Scanner(System.in)) {
@@ -23,8 +23,10 @@ public class MatrixTests {
 			}
 		} catch (NumberFormatException e) {
 			System.out.println("Format: set x y val");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Index is out of the matrix boundaries");
 		}
-		
+	
 	}
 
 }
