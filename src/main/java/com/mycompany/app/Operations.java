@@ -1,6 +1,63 @@
 package com.mycompany.app;
 
 public class Operations {
+	
+	/**
+	 * 
+	 * @param matrix
+	 * @return
+	 */
+	public Matrix matrixGaussJordanElimination(Matrix matrix) {
+		int height = matrix.getHeight();
+	    int width = matrix.getWidth();
+	    float[][] augmented = new float[height][width*2];
+	    
+	    for (int i = 0; i < height; i++) {
+	        for (int j = 0; j < width; j++) {
+	            augmented[i][j] = matrix.getElement(j, i);
+	        }
+	        for (int j = width; j < width*2; j++) {
+	            augmented[i][j] = (j - width == i) ? 1 : 0;
+	        }
+	    }
+
+	    for (int i = 0; i < height; i++) {
+	        // find the pivot element
+	        int pivot = i;
+	        for (int j = i+1; j < height; j++) {
+	            if (Math.abs(augmented[j][i]) > Math.abs(augmented[pivot][i])) {
+	                pivot = j;
+	            }
+	        }
+	        float[] temp = augmented[i];
+	        augmented[i] = augmented[pivot];
+	        augmented[pivot] = temp;
+
+	        float divisor = augmented[i][i];
+	        for (int j = 0; j < width*2; j++) {
+	            augmented[i][j] /= divisor;
+	        }
+
+	        for (int j = 0; j < height; j++) {
+	            if (j == i) {
+	                continue;
+	            }
+	            float factor = augmented[j][i];
+	            for (int k = 0; k < width*2; k++) {
+	                augmented[j][k] -= factor * augmented[i][k];
+	            }
+	        }
+	    }
+
+	    Matrix reduced = new Matrix(width, height);
+	    for (int i = 0; i < height; i++) {
+	        for (int j = width; j < width*2; j++) {
+	            reduced.setElement(j - width, i, augmented[i][j]);
+	        }
+	    }
+	    
+	    return reduced;
+	}
 		
 	/**
 	 * 
@@ -30,7 +87,6 @@ public class Operations {
 	   
 	    return result;
 	}
-	
 	
 	/**
 	 * 
