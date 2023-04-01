@@ -1,5 +1,7 @@
 package com.mycompany.app;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class MatrixTests {
@@ -18,13 +20,28 @@ public class MatrixTests {
 					int y = Integer.valueOf(commandSplit[2]);
 					float value = Float.valueOf(commandSplit[3]);
 					m.setElement(x, y, value);
+				} else if (command.startsWith("save")) {
+					try {
+						m.export(Path.of("saved_matrix.txt"));
+						System.out.println("saved!");
+					} catch (IOException e) {
+						System.err.println("IOException: " + e);
+					}
+				} else if (command.startsWith("clear")) {
+					m.clear();
+				} else if (command.startsWith("load")) {
+					try {
+						m = new Matrix(Path.of("saved_matrix.txt"));
+					} catch (IOException e) {
+						System.err.println("IOException: " + e);
+					}
 				}
 				m.print();
 			}
 		} catch (NumberFormatException e) {
-			System.out.println("Format: set x y val");
+			System.err.println("Invalid number format (this may have occured in the Matrix class).");
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("Index is out of the matrix boundaries");
+			System.err.println("Index is out of the matrix boundaries.");
 		}
 	
 	}
