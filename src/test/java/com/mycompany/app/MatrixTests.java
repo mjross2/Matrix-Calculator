@@ -35,6 +35,8 @@ public class MatrixTests {
 					} catch (IOException e) {
 						System.err.println("IOException: " + e);
 					}
+				} else if (command.startsWith("determinant")) {
+					System.out.println(Operations.determinant(m));
 				}
 				m.print();
 			}

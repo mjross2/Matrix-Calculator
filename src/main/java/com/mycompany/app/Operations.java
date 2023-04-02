@@ -227,4 +227,70 @@ public class Operations {
         }
         return result;
     }	
+    
+    public static float determinant(Matrix matrix) {
+    	int width = matrix.getWidth();
+    	int height = matrix.getHeight();
+    	if (width != height) {
+    		System.err.println("Only square matricies have determinants, returning 0.");
+    		return 0;
+    	} else if (width == 1) {
+    		return matrix.getElement(0, 0);
+    	} else if (width == 2) {
+    		float a = matrix.getElement(0, 0);
+    		float b = matrix.getElement(1, 0);
+    		float c = matrix.getElement(0, 1);
+    		float d = matrix.getElement(1, 1);
+    		return (a*d)-(b*c);
+    	}
+    	float result = 0;
+    	// for each element (e) in the first row
+    	for (int col = 0; col < width; col++) {
+    		// result += e * Cofactor expansion of e's location    		
+    		result += matrix.getElement(col, 0) * cofactor(matrix, col, 0);
+    	}
+    	return result;
+    }
+
+	public static float cofactor(Matrix matrix, int x, int y) {
+		float result = (float) Math.pow(-1, x + y) * minor(matrix, x, y);
+		return result;
+	}
+
+	public static float minor(Matrix matrix, int x, int y) {
+		// remove x's column and y's row
+		int ogLen = matrix.getWidth();
+		if (ogLen != matrix.getHeight()) {
+			System.err.println("Matrix must be square, returning 0.");
+			return 0;
+		}
+		
+		Matrix reduced = new Matrix(ogLen - 1, ogLen -1);
+		int reducedX = 0;
+		int reducedY = 0;
+		
+		for (int row = 0; row < ogLen; row++) {
+			if (row != y) {
+				for (int col = 0; col < ogLen; col++) {
+					if (col != x) {
+						reduced.setElement(reducedX, reducedY, matrix.getElement(col, row));
+						reducedX++;
+					}
+				}
+				reducedY++;
+				reducedX = 0;
+			}
+		}
+				
+		if (ogLen - 1 > 2) {
+			return determinant(reduced);
+		}
+		
+		float a = reduced.getElement(0, 0);
+		float b = reduced.getElement(1, 0);
+		float c = reduced.getElement(0, 1);
+		float d = reduced.getElement(1, 1);
+		return (a*d)-(b*c);
+		
+	}
 }
