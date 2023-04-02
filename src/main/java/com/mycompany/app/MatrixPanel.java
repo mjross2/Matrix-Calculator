@@ -7,15 +7,11 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class MatrixPanel extends JPanel {
-
-	// TODO: add a variable that stores a reference to the class that handles songs (like Mp3Player or MusicCollection or MusicHandler or whatever you called it in part 1)
-	// This variable will be set in the setSongs method that you would also need to add.
 	private Matrix matrix = null;
 	private Matrix matrix2 = null;
 	private PlayerThread helperThread  = null;
 	// GUI-related stuff
 	private JPanel topPanel, bottomPanel, centerPanel;
-
 	// Buttons in the top panel
 	private JButton enterMatrixButton1;
 	private JButton enterMatrixButton2;
@@ -29,13 +25,14 @@ public class MatrixPanel extends JPanel {
 	private JButton echolonButton;
 	private JButton transposeButton;
 	private JButton GaussianEliminationButton;
-	private JTextField rowBox, colBox, colBox2, rowBox2; // for searching by keyword
+	
+	private JTextField rowBox, colBox, colBox2, rowBox2; 
 
 	// Table in the central panel
 	private JTable table1 = null, table2 = null;
 	// Buttons in the bottom panel for operations
 
-	private Thread currThread = null;	// the current thread that is playing the song
+	private Thread currThread = null;	
 	private boolean add = false;
 	private boolean subtract = false;
 	private boolean multiply = false;
@@ -45,7 +42,7 @@ public class MatrixPanel extends JPanel {
 	private boolean transpose = false;
 	private boolean GaussianElimination = false;
 
-	public Mp3PlayerPanel() {
+	public MatrixPanel() {
 		this.setLayout(new BorderLayout());
 
 		// create buttons
@@ -91,7 +88,7 @@ public class MatrixPanel extends JPanel {
 		bottomPanel.add(exitButton);
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
-		// the panel in the center that shows mp3 songs
+		// the panel in the center that shows the ops
 		centerPanel = new JPanel();
 		centerPanel.add(echolonButton);
 		centerPanel.add(determinantButton);
@@ -104,20 +101,7 @@ public class MatrixPanel extends JPanel {
 
 
 		this.add(centerPanel, BorderLayout.CENTER);
-
-
-		// FileChooser: set the default directory to the current directory
 	}
-
-	// TODO: Add a setSongs method that sets the Mp3Player variable, so that GUI has access to it.
-
-	/**
-	 * Create a table that shows the title and the artist of each song in the
-	 * center panel.
-	 *
-	 */
-
-	/** A inner listener class for buttons. **/
 	class MyButtonListener implements ActionListener {
 		public Matrix matrixFill(int rows, int cols){
 			Matrix matrix = new Matrix(rows, cols);
@@ -346,6 +330,7 @@ public class MatrixPanel extends JPanel {
 					}
 					centerPanel.add(table1);
 				}
+				
 			}
 			else if (e.getSource() == exitButton) {
 				
