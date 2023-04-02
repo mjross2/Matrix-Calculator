@@ -50,7 +50,7 @@ public class MatrixPanel extends JPanel {
 		enterMatrixButton2 = new JButton("Create Matrix 2");
 		exitButton = new JButton("Exit");
 		calculateButton = new JButton("Calculate");
-		echelonButton = new JButton("Echolon");
+		echelonButton = new JButton("Echelon");
 		determinantButton = new JButton("Determinant");
 		inverseButton = new JButton("Inverse");
 		addMatrixButton = new JButton("Add Matrix");
