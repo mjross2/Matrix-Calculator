@@ -24,7 +24,7 @@ public class MatrixPanel extends JPanel {
 	private JButton echolonButton;
 	private JButton transposeButton;
 	private JButton GaussianEliminationButton;
-	
+	private JButton DeterminantButton;
 	private JTextField rowBox, colBox, colBox2, rowBox2; 
 
 	// Table in the central panel
@@ -40,6 +40,7 @@ public class MatrixPanel extends JPanel {
 	private boolean inverse = false;
 	private boolean transpose = false;
 	private boolean GaussianElimination = false;
+	
 
 	public MatrixPanel() {
 		this.setLayout(new BorderLayout());
@@ -61,6 +62,7 @@ public class MatrixPanel extends JPanel {
 		multiplyMatrixButton = new JButton("Multiply Matrix");
 		transposeButton = new JButton("Transpose");
 		GaussianEliminationButton = new JButton("Gaussian Elimination");
+		determinantButton = new JButton("Determinant");
 
 		// add a listener for each button
 		enterMatrixButton1.addActionListener(new MyButtonListener());
@@ -75,6 +77,7 @@ public class MatrixPanel extends JPanel {
 		multiplyMatrixButton.addActionListener(new MyButtonListener());
 		transposeButton.addActionListener(new MyButtonListener());
 		GaussianEliminationButton.addActionListener(new MyButtonListener());
+		determinantButton.addActionListener(new MyButtonListener());
 
 		// Create panels: top, center, bottom
 		topPanel = new JPanel();
@@ -97,7 +100,6 @@ public class MatrixPanel extends JPanel {
 		centerPanel.add(multiplyMatrixButton);
 		centerPanel.add(transposeButton);
 		centerPanel.add(GaussianEliminationButton);
-
 
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
@@ -189,6 +191,16 @@ public class MatrixPanel extends JPanel {
 			}
 			if(e.getSource() == GaussianEliminationButton){
 				GaussianElimination = true;
+				centerPanel.removeAll();
+				centerPanel.repaint();
+				topPanel.setLayout(new GridLayout(1, 3));
+				topPanel.add(enterMatrixButton1);
+				topPanel.add(rowBox);
+				topPanel.add(colBox);
+				bottomPanel.add(calculateButton);
+			}
+			if (e.getSource() == determinantButton) {
+				determinant = true;
 				centerPanel.removeAll();
 				centerPanel.repaint();
 				topPanel.setLayout(new GridLayout(1, 3));
@@ -329,7 +341,17 @@ public class MatrixPanel extends JPanel {
 					}
 					centerPanel.add(table1);
 				}
-				
+				if (determinant) {
+					if (matrix == null) {
+						return;
+					}
+					matrix = matrixFill(matrix.getHeight(), matrix.getWidth());
+					float result = Operations.determinant(matrix);
+					centerPanel.remove(table1);
+					table1 = new JTable(1, 1);
+					table1.setValueAt(result, 0, 0);
+					centerPanel.add(table1);
+				}
 			}
 			else if (e.getSource() == exitButton) {
 				
