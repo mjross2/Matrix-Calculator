@@ -21,27 +21,23 @@ public class MatrixPanel extends JPanel {
 	private JButton addMatrixButton;
 	private JButton subtractMatrixButton;
 	private JButton multiplyMatrixButton;
-	private JButton echolonButton;
+	private JButton echelonButton;
 	private JButton transposeButton;
 	private JButton GaussianEliminationButton;
-	private JButton DeterminantButton;
 	private JTextField rowBox, colBox, colBox2, rowBox2; 
 
 	// Table in the central panel
 	private JTable table1 = null, table2 = null;
 	// Buttons in the bottom panel for operations
-
-	private Thread currThread = null;	
 	private boolean add = false;
 	private boolean subtract = false;
 	private boolean multiply = false;
-	private boolean echolon = false;
+	private boolean echelon = false;
 	private boolean determinant = false;
 	private boolean inverse = false;
 	private boolean transpose = false;
 	private boolean GaussianElimination = false;
 	
-
 	public MatrixPanel() {
 		this.setLayout(new BorderLayout());
 
@@ -54,7 +50,7 @@ public class MatrixPanel extends JPanel {
 		enterMatrixButton2 = new JButton("Create Matrix 2");
 		exitButton = new JButton("Exit");
 		calculateButton = new JButton("Calculate");
-		echolonButton = new JButton("Echolon");
+		echelonButton = new JButton("Echolon");
 		determinantButton = new JButton("Determinant");
 		inverseButton = new JButton("Inverse");
 		addMatrixButton = new JButton("Add Matrix");
@@ -69,7 +65,7 @@ public class MatrixPanel extends JPanel {
 		enterMatrixButton2.addActionListener(new MyButtonListener());
 		exitButton.addActionListener(new MyButtonListener());
 		calculateButton.addActionListener(new MyButtonListener());
-		echolonButton.addActionListener(new MyButtonListener());
+		echelonButton.addActionListener(new MyButtonListener());
 		determinantButton.addActionListener(new MyButtonListener());
 		inverseButton.addActionListener(new MyButtonListener());
 		addMatrixButton.addActionListener(new MyButtonListener());
@@ -92,7 +88,7 @@ public class MatrixPanel extends JPanel {
 
 		// the panel in the center that shows the ops
 		centerPanel = new JPanel();
-		centerPanel.add(echolonButton);
+		centerPanel.add(echelonButton);
 		centerPanel.add(determinantButton);
 		centerPanel.add(inverseButton);
 		centerPanel.add(addMatrixButton);
@@ -100,9 +96,9 @@ public class MatrixPanel extends JPanel {
 		centerPanel.add(multiplyMatrixButton);
 		centerPanel.add(transposeButton);
 		centerPanel.add(GaussianEliminationButton);
-
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
+
 	class MyButtonListener implements ActionListener {
 		public Matrix matrixFill(int rows, int cols){
 			Matrix matrix = new Matrix(rows, cols);
@@ -354,14 +350,9 @@ public class MatrixPanel extends JPanel {
 				}
 			}
 			else if (e.getSource() == exitButton) {
-				
 				System.exit(-1);
 			}
-			
 			updateUI();
-
 		} // actionPerformed
-
 	} // ButtonListener
-	
 }
