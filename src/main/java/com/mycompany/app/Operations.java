@@ -194,11 +194,11 @@ public class Operations {
      * @return
      * @throws Exception
      */
-    public static Float dotProduct(Float[] row, Float[] col) throws Exception {
+    public static float dotProduct(float[] row, float[] col) throws Exception {
         if (row.length != col.length) {
             throw new Exception("Size must match");
         }
-        Float sum = (float) 0;
+        float sum = (float) 0;
         for (int i = 0; i < row.length; i++) {
             sum += row[i] * col[i];
         }
@@ -213,9 +213,9 @@ public class Operations {
      * @return
      */
     public static Matrix add(Matrix a, Matrix b) {
-        Float aVal;
-        Float bVal;
-        Float sum;
+        float aVal;
+        float bVal;
+        float sum;
         Matrix result = new Matrix(a.getHeight(), a.getWidth());
         for (int i = 0; i < a.getHeight(); i++) {
             for (int j = 0; j < a.getWidth(); j++) {
@@ -225,7 +225,6 @@ public class Operations {
                 result.setElement(i, j, sum);
             }
         }
-        
         return result;
     }	
 }
