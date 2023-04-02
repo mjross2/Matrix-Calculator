@@ -233,7 +233,7 @@ public class Operations {
     	int width = matrix.getWidth();
     	int height = matrix.getHeight();
     	if (width != height) {
-    		System.err.println("Only square matricies have determinants.");
+    		System.err.println("Only square matricies have determinants, returning 0.");
     		return 0;
     	} else if (width == 1) {
     		return matrix.getElement(0, 0);
@@ -254,7 +254,43 @@ public class Operations {
     }
 
 	public static float cofactor(Matrix matrix, int x, int y) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (float) Math.pow(-1, x + y - 1) * minor(matrix, x, y);
+	}
+
+	private static float minor(Matrix matrix, int x, int y) {
+		
+		// remove x's column and y's row
+		int ogLen = matrix.getWidth();
+		if (ogLen != matrix.getHeight()) {
+			System.err.println("Matrix must be square, returning 0.");
+			return 0;
+		}
+		
+		Matrix reduced = new Matrix(ogLen - 1, ogLen -1);
+		int reducedX = 0;
+		int reducedY = 0;
+		
+		for (int row = 0; row < ogLen; row++) {
+			if (row != y) {
+				for (int col = 0; col < ogLen; col++) {
+					if (col != x) {
+						reduced.setElement(reducedX, reducedY, matrix.getElement(col, row));
+						reducedX++;
+					}
+				}
+				reducedY++;
+			}
+		}
+		
+		if (ogLen - 1 > 2) {
+			return determinant(reduced);
+		}
+		
+		float a = reduced.getElement(0, 0);
+		float b = reduced.getElement(1, 0);
+		float c = reduced.getElement(0, 1);
+		float d = reduced.getElement(1, 1);
+		return (a*d)-(b*c);
+		
 	}
 }
