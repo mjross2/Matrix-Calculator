@@ -60,29 +60,29 @@ public class Matrix {
 		return height;
 	}
 
-	public Float[] getRow(int r) {
-		Float[] row = new Float[width];
+	public float[] getRow(int r) {
+		float[] row = new float[width];
 		for (int i = 0; i < width; i++) {
 			row[i] = matrix[r][i];
 		}
 		return row;
 	}
 
-	public Float[] getCol(int c) {
-		Float[] col = new Float[height];
+	public float[] getCol(int c) {
+		float[] col = new float[height];
 		for (int i = 0; i < width; i++) {
 			col[i] = matrix[i][c];
 		}
 		return col;
 	}
 	
-	public Float getElement(int x, int y) {
-		return matrix[y][x];
+	public float getElement(int x, int y) {
+		return matrix[x][y];
 	}
 	
 	public void setElement(int x, int y, float value) {
 		if (x < width && y < height) {
-			matrix[y][x] = value;
+			matrix[x][y] = value;
 		} else {
 			System.err.println("Please choose in-bounds indexes. (Starts at (0, 0) in the top-left corner.)");
 		}
