@@ -247,20 +247,18 @@ public class Operations {
     	float result = 0;
     	// for each element (e) in the first row
     	for (int col = 0; col < width; col++) {
-    		// result += e * Cofactor expansion of e's location
-    		result += cofactor(matrix, col, 0);
+    		// result += e * Cofactor expansion of e's location    		
+    		result += matrix.getElement(col, 0) * cofactor(matrix, col, 0);
     	}
     	return result;
     }
 
 	public static float cofactor(Matrix matrix, int x, int y) {
-		float result = (float) Math.pow(-1, x + y - 1) * minor(matrix, x, y);
-		System.out.println("cofactor of " + x + " and " + y + " = " + result);
+		float result = (float) Math.pow(-1, x + y) * minor(matrix, x, y);
 		return result;
 	}
 
-	private static float minor(Matrix matrix, int x, int y) {
-		
+	public static float minor(Matrix matrix, int x, int y) {
 		// remove x's column and y's row
 		int ogLen = matrix.getWidth();
 		if (ogLen != matrix.getHeight()) {
@@ -284,9 +282,8 @@ public class Operations {
 				reducedX = 0;
 			}
 		}
-		
+				
 		if (ogLen - 1 > 2) {
-			reduced.print(); // TODO
 			return determinant(reduced);
 		}
 		
