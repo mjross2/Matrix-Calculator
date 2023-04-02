@@ -254,7 +254,9 @@ public class Operations {
     }
 
 	public static float cofactor(Matrix matrix, int x, int y) {
-		return (float) Math.pow(-1, x + y - 1) * minor(matrix, x, y);
+		float result = (float) Math.pow(-1, x + y - 1) * minor(matrix, x, y);
+		System.out.println("cofactor of " + x + " and " + y + " = " + result);
+		return result;
 	}
 
 	private static float minor(Matrix matrix, int x, int y) {
@@ -279,10 +281,12 @@ public class Operations {
 					}
 				}
 				reducedY++;
+				reducedX = 0;
 			}
 		}
 		
 		if (ogLen - 1 > 2) {
+			reduced.print(); // TODO
 			return determinant(reduced);
 		}
 		
