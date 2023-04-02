@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 public class MatrixPanel extends JPanel {
 	private Matrix matrix = null;
 	private Matrix matrix2 = null;
-	private PlayerThread helperThread  = null;
 	// GUI-related stuff
 	private JPanel topPanel, bottomPanel, centerPanel;
 	// Buttons in the top panel
